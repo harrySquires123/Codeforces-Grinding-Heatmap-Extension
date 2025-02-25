@@ -166,10 +166,33 @@ function createHeatmap(year) {
         //     }, 200);
         // });
         
+        
         svg.on("mouseleave", function () {
             tooltip.style("visibility", "hidden");
         });
 
+         // Month labels
+        let months = d3.timeMonths(startDate, endDate);
+        svg.selectAll(".month-label")
+            .data(months)
+            .enter().append("text")
+            .attr("x", d => d3.timeFormat("%U")(d) * cellSize + 45)
+            .attr("y", 12)
+            .style("font-size", "12px")
+            .text(d3.timeFormat("%b"));
+
+        let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        let filteredDays = [1, 3, 5];
+        svg.selectAll(".day-label")
+        .data(filteredDays)
+        .enter()
+        .append("text")
+        .attr("x", 30)  // Adjust alignment
+        .attr("y", d => d * cellSize + 30)  // Ensure correct positioning
+        .attr("text-anchor", "end")
+        .style("font-size", "12px")
+        .text(d => days[d]);
+    
     return { svg, dates, parseDate };
 }
 
