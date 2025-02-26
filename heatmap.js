@@ -15,23 +15,17 @@ let submissionCache = {};
 
 // CF Rating Color Mapping
 const ratingColors = [
-    { min: 3000, color: 'rgba(170,0,0,0.9)', len: 6},
-    { min: 2600, color: 'rgba(255,51,51,0.9)', len: 4},
-    { min: 2400, color: 'rgba(255,119,119,0.9)', len: 2},
-    { min: 2300, color: 'rgba(255,187,85,0.9)', len: 1},
-    { min: 2100, color: 'rgba(255,204,136,0.9)', len: 2},
-    { min: 1900, color: 'rgba(255,136,255,0.9)', len: 2},
-    { min: 1600, color: 'rgba(170,170,255,0.9)', len: 3},
-    { min: 1400, color: 'rgba(119,221,187,0.9)', len: 2},
-    { min: 1200, color: 'rgba(119,255,119,0.9)', len: 2},
-    { min: 0, color: 'rgba(204,204,204,0.9)', len: 12}
+    { min: 3000, color: 'rgba(170,0,0,0.9)', len: 6, idx: 0},
+    { min: 2600, color: 'rgb(255, 0, 0)', len: 4, idx: 1}, //rgba(200, 0, 0, 0.9)
+    { min: 2400, color: 'rgba(255, 100, 100, 0.9)', len: 2, idx: 2},
+    { min: 2300, color: 'rgba(255,187,85,0.9)', len: 1, idx: 3},
+    { min: 2100, color: 'rgba(255,204,136,0.9)', len: 2, idx: 4},
+    { min: 1900, color: 'rgba(255, 85, 255, 0.9)', len: 2, idx: 5}, //rgba(255,136,255,0.9)
+    { min: 1600, color: 'rgba(170,170,255,0.9)', len: 3, idx: 6},// rgba(120, 120, 255, 0.9)
+    { min: 1400, color: 'rgba(119,221,187,0.9)', len: 2, idx: 7},
+    { min: 1200, color: 'rgba(119,255,119,0.9)', len: 2, idx: 8},
+    { min: 0, color: 'rgba(204,204,204,0.9)', len: 12, idx: 9}
 ];
-
-// function getRatingColor(rating, count) {
-//     let baseColor = ratingColors.find(c => rating >= c.min).color;
-//     let opacityFactor = Math.min(1, 0.5 + Math.log10(count + 1) * 0.5);
-//     return baseColor.replace(/0\.9\)/, `${opacityFactor})`);
-// }
 
 async function fetchSubmissionData() {
     if (Object.keys(submissionCache).length > 0) {
@@ -55,11 +49,14 @@ async function fetchSubmissionData() {
                 if (!submissionCache[year][formattedDate]) {
                     submissionCache[year][formattedDate] = { problems: [] };
                 }
-                submissionCache[year][formattedDate].problems.push({
-                    rating: problemRating,
-                    name: problemName,
-                    link: problemLink
-                });
+                // Brute force duplicate check per day. This is fine since the number of problems solved per day is small
+                if (!submissionCache[year][formattedDate].problems.some(p => p.name === problemName)) {
+                    submissionCache[year][formattedDate].problems.push({
+                        rating: problemRating,
+                        name: problemName,
+                        link: problemLink
+                     });
+                }
             }
         });
         return submissionCache;
@@ -93,9 +90,9 @@ let tooltip = d3.select("body").append("div")
 function createHeatmap(year) {
     console.log(`Initializing heatmap for ${year}`);
 
-    let width = 800, height = 180, cellSize = 15;
+    let width = 850, height = 180, cellSize = 15;
     let startDate = new Date(year, 0, 1);
-    let endDate = new Date(year, 11, 31);
+    let endDate = new Date(year+1, 0, 1);
     let dates = d3.timeDays(startDate, endDate);
     let parseDate = d3.timeFormat("%Y-%m-%d");
 
@@ -157,15 +154,6 @@ function createHeatmap(year) {
                     .style("visibility", "visible");
             }
         })
-        // .on("mouseout", function (event) {
-        //     // Delay hiding to allow time for the user to move to the tooltip
-        //     setTimeout(() => {
-        //         if (!tooltip.node().matches(':hover')) {
-        //             tooltip.style("visibility", "hidden");
-        //         }
-        //     }, 200);
-        // });
-        
         
         svg.on("mouseleave", function () {
             tooltip.style("visibility", "hidden");
@@ -204,22 +192,8 @@ function getRatingColor(problems) {
     // Find the color range of maxRating
     let colorEntry = ratingColors.find(c => maxRating >= c.min);
     let baseColor = colorEntry.color;
-    let lowerBound = colorEntry.min;
-    let maxGroupRating = lowerBound + (colorEntry.len-1) * 100;
 
-    // Calculate weighted sum
-    let weightedSum = 0;
-    problems.forEach(p => {
-        let diff = maxGroupRating - p.rating;
-        if (p.rating >= lowerBound) {
-            // weightedSum += 1 / Math.pow(2, diff / 100);
-            weightedSum += Math.log2(diff + 100) / Math.log2(100);
-        }
-    });
-
-    // Cap at 4 for max opacity
-    let opacityFactor = Math.min(1, 0.5 + weightedSum / 4);
-
+    let opacityFactor = 0.9;
     return baseColor.replace(/0\.9\)/, `${opacityFactor})`);
 }
 
@@ -229,7 +203,7 @@ async function renderHeatmap(year) {
     let solvedDates = submissionData[year] || {};
 
     svg.selectAll("rect")
-        .transition().duration(500) // Updated duration
+        .transition().duration(200) // Updated duration
         .attr("fill", d => {
             let dateKey = parseDate(d);
             return solvedDates[dateKey] ? getRatingColor(solvedDates[dateKey].problems) : "#ebedf0";
