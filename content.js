@@ -8,8 +8,9 @@ window.addEventListener("load", function () {
             // Create a dedicated container for the heatmap
             let heatmapContainer = document.createElement("div");
             heatmapContainer.id = "cf-heatmap-container";
-            heatmapContainer.style.marginTop = "20px"; // Add some spacing
+            heatmapContainer.classList.add("roundbox"); // Codeforces' default class
 
+            heatmapContainer.style.visibility = "hidden"; // Hide until fully loaded
             // Insert the container after the activity box
             activityBox.parentNode.appendChild(heatmapContainer);
 
