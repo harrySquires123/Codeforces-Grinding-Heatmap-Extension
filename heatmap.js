@@ -9,6 +9,14 @@ if (!username) {
     console.error("Could not detect Codeforces username.");
 }
 
+function findProblemURL(contestId,index){
+    if(contestId && contestId.toString().length<=4){
+      return `https://codeforces.com/problemset/problem/${contestId}/${index}`;
+    }else{
+      return `https://codeforces.com/problemset/gymProblem/${contestId}/${index}`;
+    }
+}
+
 // Cache API response
 let submissionCache = {};
 
@@ -42,7 +50,7 @@ async function fetchSubmissionData() {
             let formattedDate = date.toLocaleDateString("en-CA");
             let problemRating = sub.problem.rating || 0;
             let problemName = sub.problem.name;
-            let problemLink = `https://codeforces.com/contest/${sub.contestId}/problem/${sub.problem.index}`;
+            let problemLink = findProblemURL(sub.contestId,sub.problem.index);
 
             if (sub.verdict === "OK") {
                 if (!submissionCache[year]) submissionCache[year] = {};
