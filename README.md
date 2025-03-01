@@ -64,7 +64,7 @@ The heatmap colors are based on the highest-rated problem solved on a given day.
 
 ## 📌 Future Improvements
 
-- Show different intensity based on some weighted average of problem rating solved in a day.
+- Show different intensity based on weighted average of problem rating solved in a day.
 - Add dark mode
 
 ## 🙌 Contributions
