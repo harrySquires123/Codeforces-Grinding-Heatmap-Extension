@@ -13,11 +13,11 @@
       ],
       "js": [
         "libs/d3.min.js",
-        "heatmap.js",
-        "content.js"
+        "src/heatmap.js",
+        "src/content.js"
       ],
       "css": [
-        "styles.css"
+        "styles/styles.css"
       ],
       "run_at": "document_idle"
     }
