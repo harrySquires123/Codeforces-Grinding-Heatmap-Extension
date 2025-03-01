@@ -4,15 +4,20 @@
 
 This project visualizes a Codeforces user's problem-solving activity in a **heatmap format**. Unlike the standard Codeforces heatmap, which only considers the number of problems solved per day, this heatmap is **based on the highest-rated problem solved each day**.
 
-## 🔹 Key Features
+## Key Features
 
-- **Rating-based heatmap**:- The heatmap color on a given day represents the maximum rating of a problem solved that day.
-- **Hover for details**: Hovering over any day in the heatmap displays a tooltip listing **all problems** solved on that day. <br>
-The tooltip contains:
-  - Problem Name
-  - Problem Rating
-  - Direct Link to the Problem
-- **Multi-year support**: Analyze past performance over different years.
+- **🎨 Rating-Based Colors**  
+  The heatmap color on a given day represents the **maximum rating** of a problem solved that day.
+
+- **🖱️ Hover for Details**  
+  - Hovering over any day in the heatmap shows a **tooltip** with all problems solved on that day.  
+  - The tooltip includes:
+    - 📌 **Problem Name**  
+    - ⭐ **Problem Rating**  
+    - 🔗 **Direct Link to the Problem**  
+
+- **📅 Multi-Year Support**  
+  - Analyze past performance across **multiple years** with ease.
 
 ## 🎨 Color Mapping
 
