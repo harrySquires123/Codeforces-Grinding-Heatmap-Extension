@@ -7,8 +7,8 @@ This project visualizes a Codeforces user's problem-solving activity in a **heat
 ## 🔹 Key Features
 
 - **Rating-based heatmap**:- The heatmap color on a given day represents the maximum rating of a problem solved that day.
-- **Hover for details**: Hovering over any day in the heatmap displays a tooltip listing **all problems** solved on that day.
-- The tooltip contains:
+- **Hover for details**: Hovering over any day in the heatmap displays a tooltip listing **all problems** solved on that day. <br>
+The tooltip contains:
   - Problem Name
   - Problem Rating
   - Direct Link to the Problem
@@ -18,18 +18,18 @@ This project visualizes a Codeforces user's problem-solving activity in a **heat
 
 The heatmap colors are based on the highest-rated problem solved on a given day. Here’s the rating-to-color mapping:
 
-| Rating Range | Color                                                        |
-| ------------ | ------------------------------------------------------------ |
-| 3000+        | Dark Red                                                     |
-| 2600-2999    | Bright Red                                                   |
-| 2400-2599    | Light Red                                                    |
-| 2300-2399    | Orange                                                       |
-| 2100-2299    | Light Orange                                                 |
-| 1900-2099    | Pink                                                         |
-| 1600-1899    | Light Blue                                                   |
-| 1400-1599    | Aqua Green (`#77DDBB` equivalent to `rgba(119,221,187,0.9)`) |
-| 1200-1399    | Green                                                        |
-| 0-1199       | Gray                                                         |
+| Problem Rating Range | Color |
+| ------------ | ---------------------------------------------- |
+| 3000+        | ![#AA0000](https://placehold.co/15x15/AA0000/AA0000.png) `Dark Red` |
+| 2600-2999    | ![#FF0000](https://placehold.co/15x15/FF0000/FF0000.png) `Bright Red` |
+| 2400-2599    | ![#FF6464](https://placehold.co/15x15/FF6464/FF6464.png) `Light Red` |
+| 2300-2399    | ![#FFBB55](https://placehold.co/15x15/FFBB55/FFBB55.png) `Orange` |
+| 2100-2299    | ![#FFCC88](https://placehold.co/15x15/FFCC88/FFCC88.png) `Light Orange` |
+| 1900-2099    | ![#FF55FF](https://placehold.co/15x15/FF55FF/FF55FF.png) `Purple` |
+| 1600-1899    | ![#AAAAFF](https://placehold.co/15x15/AAAAFF/AAAAFF.png) `Light Blue` |
+| 1400-1599    | ![#77DDBB](https://placehold.co/15x15/77DDBB/77DDBB.png) `Aqua Green` |
+| 1200-1399    | ![#77FF77](https://placehold.co/15x15/77FF77/77FF77.png) `Green` |
+| 0-1199       | ![#CCCCCC](https://placehold.co/15x15/CCCCCC/CCCCCC.png) `Gray` |
 
 ## How It Helps
 
@@ -52,13 +52,14 @@ The heatmap colors are based on the highest-rated problem solved on a given day.
 ## 📸 Screenshots
 
 ### Heatmap
+![image](https://github.com/user-attachments/assets/6606ce43-dd9e-45bb-8a43-26b25bec6e5f)
 
 ### Hover Feature
+![image](https://github.com/user-attachments/assets/ba2c802e-870a-4ec8-af33-34cfc9a37459)
 
 ## 📌 Future Improvements
 
-- Add support for more competitive programming platforms (AtCoder, LeetCode, etc.)
-- Implement filters for problem tags and difficulty levels
+- Show different intensity based on some weighted average of problem rating solved in a day.
 - Add dark mode
 
 ## 🙌 Contributions
