@@ -1,0 +1,26 @@
+#cf-heatmap-container {
+    margin-top: 20px;
+    /* width: 100%; Make it responsive */
+    min-height: 150px;
+    /* max-width: 845px; Prevent it from exceeding the original width */
+    padding: 14px;
+    /* border-radius: 3px; */
+    background: #ffffff;
+    text-align: left;
+    border: 1px solid rgb(185, 185, 185);
+    /* box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); */
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 14px;
+}
+
+/* SVG inside the heatmap */
+#cf-heatmap-container svg {
+    width: 100%; /* Makes it responsive */
+    height: auto; /* Maintains aspect ratio */
+    display: block;
+    margin: auto;
+}
+
