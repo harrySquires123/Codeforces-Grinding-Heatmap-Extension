@@ -1,11 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "CF Rating-Based Heatmap",
-  "version": "1.0",
+  "name": "Codeforces Rating-Based Heatmap",
+  "version": "2.0",
   "description": "Displays a rating-based problem-solving heatmap on Codeforces profile pages.",
-  "host_permissions": [
-    "https://codeforces.com/api/*"
-  ],
   "content_scripts": [
     {
       "matches": [
@@ -24,7 +21,16 @@
   ],
   "icons": {
     "16": "icons/icon16.png",
-    "48": "icons/icon48.png",
+    "48": "icons/icon48_plain.png",
     "128": "icons/icon128.png"
-  }
+  },
+  "action": {
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48_plain_large.png",
+      "128": "icons/icon128.png"
+    },
+    "default_popup": "src/popup.html",
+    "default_title": "CF Rating-Based Heatmap"
+  }  
 }
