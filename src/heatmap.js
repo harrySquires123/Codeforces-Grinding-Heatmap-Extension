@@ -19,7 +19,7 @@ function findProblemURL(contestId,index){
 
 // Cache API response
 let submissionCache = {};
-
+let firstSubmissionYear = 2015; // Default value
 
 // CF Rating Color Mapping
 const ratingColors = [
@@ -44,10 +44,14 @@ async function fetchSubmissionData() {
         let data = await response.json();
         if (!response.ok || data.status !== "OK") throw new Error("API error");
 
+         // Extract first submission year
+        let firstSubmissionTime = data.result[data.result.length - 1].creationTimeSeconds;
+        firstSubmissionYear = new Date(firstSubmissionTime * 1000).getFullYear();
+
         data.result.forEach(sub => {
-            let date = new Date(sub.creationTimeSeconds * 1000);
-            let year = date.getFullYear();
-            let formattedDate = date.toLocaleDateString("en-CA");
+            let date = new Date(sub.creationTimeSeconds * 1000); // creationTimeSeconds - UTC date
+            let year = date.getFullYear(); // local year
+            let formattedDate = date.toLocaleDateString("en-CA"); // local date
             let problemRating = sub.problem.rating || 0;
             let problemName = sub.problem.name;
             let problemLink = findProblemURL(sub.contestId,sub.problem.index);
@@ -95,6 +99,37 @@ let tooltip = d3.select("body").append("div")
     });
 
 
+let container = d3.select("#pageContent").append("div")
+    .attr("id", "cf-heatmap-container")
+    .classed("roundbox", true)
+    .style("margin-top", "20px")    
+    .style("padding", "10px")
+    .style("background", "white")
+    .style("border-radius", "10px")
+    .style("box-shadow", "0px 0px 5px rgba(0, 0, 0, 0.2)")
+    .style("display", "flex")
+    .style("flex-direction", "column");
+    
+// Add title at the top of the container
+container.append("h3")
+    .text("Rating-Based Heatmap")
+    .style("margin", "10px 0 20px 5px") // Adds spacing below the title
+    .style("font-size", "18px")
+    .style("font-weight", "bold")
+    .style("color", "#333");
+
+let heatmap = d3.select("#cf-heatmap-container").append("div")
+    .attr("id", "cf-heatmap")
+    
+// Append a loading message inside the container
+heatmap.append("div")
+    .attr("id", "loading-message")
+    .style("text-align", "left")
+    .style("font-size", "16px")
+    .style("padding", "5px")
+    .text("Loading...");
+
+
 function createHeatmap(year) {
     console.log(`Initializing heatmap for ${year}`);
 
@@ -104,19 +139,28 @@ function createHeatmap(year) {
     let dates = d3.timeDays(startDate, endDate);
     let parseDate = d3.timeFormat("%Y-%m-%d");
 
-    d3.select("#cf-heatmap-container").remove();
+    d3.select("#cf-heatmap").remove()
 
-    let container = d3.select("#pageContent").append("div")
-        .attr("id", "cf-heatmap-container")
-        .style("margin-top", "20px")
-        .style("padding", "10px")
-        .style("background", "white")
-        .style("border-radius", "10px")
-        .style("box-shadow", "0px 0px 5px rgba(0, 0, 0, 0.2)")
+    let heatmap = d3.select("#cf-heatmap-container").append("div")
+        .attr("id", "cf-heatmap")
+
+    let titleContainer = heatmap.append("div")
         .style("display", "flex")
-        .style("flex-direction", "column");
+        .style("justify-content", "space-between")
+        .style("align-items", "center")
+        .style("width", "100%");
 
-    let yearSelectContainer = container.append("div")
+    // Add the title
+    titleContainer.append("div")
+        .style("position", "absolute")
+        .style("left", "50%")
+        .style("transform", "translate(-50%, -50%)")
+        .style("font-size", "12px")
+        .style("font-family", "sans-serif")
+        .style("color", "#333")
+        .text(`problem-solving heatmap for ${username}`);
+
+    let yearSelectContainer = titleContainer.append("div")
         .style("display", "flex")
         .style("justify-content", "flex-end")
         .style("width", "100%");
@@ -128,12 +172,12 @@ function createHeatmap(year) {
         .on("change", function () { renderHeatmap(parseInt(this.value)); });
 
     const currentYear = new Date().getFullYear();
-    for (let y = currentYear; y >= 2015; y--) {
+    for (let y = currentYear; y >= firstSubmissionYear; y--) {
         yearSelect.append("option").attr("value", y).text(y);
     }
     yearSelect.property("value", year);
 
-    let svg = container.append("svg")
+    let svg = heatmap.append("svg")
         .attr("viewBox", `0 0 ${width} ${height + 20}`)
         .attr("preserveAspectRatio", "xMinYMin meet")
         .style("width", "100%")
