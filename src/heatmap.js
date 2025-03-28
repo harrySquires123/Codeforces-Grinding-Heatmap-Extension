@@ -20,6 +20,7 @@ function findProblemURL(contestId,index){
 // Cache API response
 let submissionCache = {};
 let firstSubmissionYear = 2015; // Default value
+const currentYear = new Date().getFullYear();
 
 // CF Rating Color Mapping
 const ratingColors = [
@@ -47,14 +48,17 @@ async function fetchSubmissionData() {
          // Extract first submission year
         let firstSubmissionTime = data.result[data.result.length - 1].creationTimeSeconds;
         firstSubmissionYear = new Date(firstSubmissionTime * 1000).getFullYear();
-
-        data.result.forEach(sub => {
+        let visited = new Set();
+        
+        for (let i = data.result.length - 1; i >= 0; i--) { // iterate from oldest to newest submission
+            const sub = data.result[i];
             let date = new Date(sub.creationTimeSeconds * 1000); // creationTimeSeconds - UTC date
             let year = date.getFullYear(); // local year
             let formattedDate = date.toLocaleDateString("en-CA"); // local date
             let problemRating = sub.problem.rating || 0;
             let problemName = sub.problem.name;
             let problemLink = findProblemURL(sub.contestId,sub.problem.index);
+            let problemId = `${sub.contestId}-${sub.problem.index}`; // Unique identifier
 
             if (sub.verdict === "OK") {
                 if (!submissionCache[year]) submissionCache[year] = {};
@@ -62,15 +66,23 @@ async function fetchSubmissionData() {
                     submissionCache[year][formattedDate] = { problems: [] };
                 }
                 // Brute force duplicate check per day. This is fine since the number of problems solved per day is small
-                if (!submissionCache[year][formattedDate].problems.some(p => p.name === problemName)) {
+                if (!submissionCache[year][formattedDate].problems.some(p => p.id === problemId)) {
+                    let isDuplicate = visited.has(problemId);
+                    visited.add(problemId);
                     submissionCache[year][formattedDate].problems.push({
                         rating: problemRating,
                         name: problemName,
-                        link: problemLink
+                        link: problemLink,
+                        id: problemId,
+                        isDuplicate: isDuplicate
                      });
                 }
             }
-        });
+        }
+        submissionCache[0] = {
+            ...submissionCache[currentYear] || {},
+            ...submissionCache[currentYear - 1] || {}
+        };
         return submissionCache;
     } catch (error) {
         console.error("Error fetching data:", error);
@@ -101,12 +113,10 @@ let tooltip = d3.select("body").append("div")
 
 let container = d3.select("#pageContent").append("div")
     .attr("id", "cf-heatmap-container")
-    .classed("roundbox", true)
-    .style("margin-top", "20px")    
+    .classed("roundbox borderTopRound borderBottomRound", true) // codeforces classes
+    .style("margin-top", "1em")    
     .style("padding", "10px")
     .style("background", "white")
-    .style("border-radius", "10px")
-    .style("box-shadow", "0px 0px 5px rgba(0, 0, 0, 0.2)")
     .style("display", "flex")
     .style("flex-direction", "column");
     
@@ -134,8 +144,20 @@ function createHeatmap(year) {
     console.log(`Initializing heatmap for ${year}`);
 
     let width = 850, height = 180, cellSize = 15;
-    let startDate = new Date(year, 0, 1);
-    let endDate = new Date(year+1, 0, 1);
+    let startDate, endDate;
+    if (year === 0) { // Choose year
+        let today = new Date();
+        endDate = new Date(today);
+        endDate.setDate(endDate.getDate()); // Ensure it includes the last day
+        startDate = new Date(today);
+        startDate.setDate(startDate.getDate() - 365); // Subtracting 365 days    
+        // Adjust to the nearest next Sunday like Codeforces
+        startDate.setDate(startDate.getDate() + 7 - ((startDate.getDay()+1) % 7));    
+    } else {
+        startDate = new Date(year, 0, 1);
+        endDate = new Date(year + 1, 0, 1);
+    }
+
     let dates = d3.timeDays(startDate, endDate);
     let parseDate = d3.timeFormat("%Y-%m-%d");
 
@@ -170,8 +192,8 @@ function createHeatmap(year) {
         .style("padding", "5px")
         .style("font-size", "14px")
         .on("change", function () { renderHeatmap(parseInt(this.value)); });
-
-    const currentYear = new Date().getFullYear();
+    
+    yearSelect.append("option").attr("value", 0).text("Choose year"); // Default option
     for (let y = currentYear; y >= firstSubmissionYear; y--) {
         yearSelect.append("option").attr("value", y).text(y);
     }
@@ -186,7 +208,7 @@ function createHeatmap(year) {
     svg.selectAll("rect")
         .data(dates)
         .enter().append("rect")
-        .attr("x", d => d3.timeFormat("%U")(d) * cellSize + 35)
+        .attr("x", d => d3.timeWeek.count(startDate, d) * cellSize + 35)
         .attr("y", d => d.getDay() * cellSize + 20)
         .attr("width", cellSize - 2)
         .attr("height", cellSize - 2)
@@ -197,7 +219,9 @@ function createHeatmap(year) {
             if (solvedProblems.length > 0) {
                 let tooltipHTML = `<strong>${dateKey}</strong><br>`;
                 solvedProblems.forEach(prob => {
-                    tooltipHTML += `<a href="${prob.link}" target="_blank" style="color: lightblue;">${prob.name} (${prob.rating})</a><br>`;
+                    const isDuplicate = prob.isDuplicate;
+                    const color = isDuplicate ? '#A9A9A9' : 'lightblue';
+                    tooltipHTML += `<a href="${prob.link}" target="_blank" style="color: ${color};">${prob.name} (${prob.rating})</a><br>`;
                 });
 
                 tooltip.html(tooltipHTML)
@@ -211,35 +235,36 @@ function createHeatmap(year) {
             tooltip.style("visibility", "hidden");
         });
 
-         // Month labels
+        // Month labels
         let months = d3.timeMonths(startDate, endDate);
         svg.selectAll(".month-label")
             .data(months)
             .enter().append("text")
-            .attr("x", d => d3.timeFormat("%U")(d) * cellSize + 45)
+            .attr("x", d => (d3.timeWeek.count(startDate, d) * cellSize) + 45)
             .attr("y", 12)
             .style("font-size", "12px")
             .text(d3.timeFormat("%b"));
 
+
         let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
         let filteredDays = [1, 3, 5];
         svg.selectAll(".day-label")
-        .data(filteredDays)
-        .enter()
-        .append("text")
-        .attr("x", 30)  // Adjust alignment
-        .attr("y", d => d * cellSize + 30)  // Ensure correct positioning
-        .attr("text-anchor", "end")
-        .style("font-size", "12px")
-        .text(d => days[d]);
-    
+            .data(filteredDays)
+            .enter()
+            .append("text")
+            .attr("x", 30)  // Adjust alignment
+            .attr("y", d => d * cellSize + 30)  // Ensure correct positioning
+            .attr("text-anchor", "end")
+            .style("font-size", "12px")
+            .text(d => days[d]);
+        
     return { svg, dates, parseDate };
 }
 
 function getRatingColor(problems) {
     if (!problems.length) return "#ebedf0";
 
-    let maxRating = Math.max(...problems.map(p => p.rating));
+    let maxRating = Math.max(0, ...problems.filter(p => !p.isDuplicate).map(p => p.rating));
 
     // Find the color range of maxRating
     let colorEntry = ratingColors.find(c => maxRating >= c.min);
@@ -263,5 +288,5 @@ async function renderHeatmap(year) {
 }
 
 fetchSubmissionData().then(() => {
-    renderHeatmap(new Date().getFullYear());
+    renderHeatmap(0);
 });
