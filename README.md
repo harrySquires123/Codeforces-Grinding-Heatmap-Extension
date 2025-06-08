@@ -3,6 +3,7 @@
 ## Overview
 
 This project visualizes a Codeforces user's problem-solving activity in a **heatmap format**. Unlike the standard Codeforces heatmap, which only considers the number of problems solved per day, this heatmap is **based on the highest-rated problem solved each day**.
+
 [Download from Chrome Web Store](https://chromewebstore.google.com/detail/codeforces-rating-based-h/heajdhmohlobjebkgkpdomkaihaghkgb)
 
 ## Key Features
