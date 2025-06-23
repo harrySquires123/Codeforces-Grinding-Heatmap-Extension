@@ -11,7 +11,7 @@ Track your **daily grind** on Codeforces — visualized by the **number of probl
 ## 🧠 What This Is
 
 This Chrome extension adds a **contribution-style heatmap** to any Codeforces user profile.  
-Unlike the official one, this version reflects how many problems you solved each day — not just contests.
+Just like the original one, this version reflects how many problems you solved each day — but alot more.
 
 ❗ **Note:** This extension is **not on the Chrome Web Store** yet.  
 Google requires a **$5 developer registration fee**, which hasn't been paid.  
@@ -29,7 +29,6 @@ You can still install it manually by following the instructions below.
   - 🧠 Problem name  
   - ⭐ Rating (if available)  
   - 🔗 Direct link to the problem  
-  - ⚠️ Gray links indicate duplicates (already solved before)
 
 - 📅 **Multiple Years Supported**  
   Explore your activity all the way back to your **first AC** on Codeforces.
