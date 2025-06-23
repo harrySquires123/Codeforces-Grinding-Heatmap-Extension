@@ -1,36 +1,38 @@
 {
-  "manifest_version": 3,
-  "name": "Codeforces Rating-Based Heatmap",
-  "version": "2.0",
-  "description": "Displays a rating-based problem-solving heatmap on Codeforces profile pages.",
-  "content_scripts": [
-    {
-      "matches": [
-        "https://codeforces.com/profile/*"
-      ],
-      "js": [
-        "libs/d3.min.js",
-        "src/heatmap.js",
-        "src/content.js"
-      ],
-      "css": [
-        "styles/styles.css"
-      ],
-      "run_at": "document_idle"
-    }
-  ],
-  "icons": {
-    "16": "icons/icon16.png",
-    "48": "icons/icon48_plain.png",
-    "128": "icons/icon128.png"
-  },
-  "action": {
-    "default_icon": {
-      "16": "icons/icon16.png",
-      "48": "icons/icon48_plain_large.png",
-      "128": "icons/icon128.png"
+    "manifest_version": 3,
+    "name": "Codeforces Grinding Heatmap",
+    "version": "1.0.0",
+    "description": "Tool for grinding CF'problems",
+    "content_scripts": [
+        {
+            "matches": [
+                "https://codeforces.com/profile/*"
+            ],
+            "js": [
+                "d3.min.js",
+                "heatmap.js",
+                "content.js"
+            ],
+            "css": [
+                "styles.css"
+            ],
+            "run_at": "document_idle"
+        }
+    ],
+    "icons": {
+        "16": "icon16.png",
+        "48": "icon48_plain.png",
+        "128": "icon128.png"
     },
-    "default_popup": "src/popup.html",
-    "default_title": "CF Rating-Based Heatmap"
-  }  
+    "action": {
+        "default_icon": {
+            "16": "icon16.png",
+            "48": "icon48_plain_large.png",
+            "128": "icon128.png"
+        },
+        "default_popup": "popup.html",
+        "default_title": "CF Grinding Heatmap"
+    },  "permissions": [
+    "storage"
+  ]
 }

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CF Grinding Heatmap</title>
+  <script defer src="popup.js"></script>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      width: 260px;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      margin: 20px auto;
+    }
+
+    h3 {
+      margin-top: 0;
+      font-size: 1.3rem;
+      color: #333;
+    }
+
+    .note-header {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-top: 5px;
+      margin-bottom: 2px;
+    }
+
+    .note-sub {
+      font-size: 0.78rem;
+      color: #777;
+      margin-bottom: 12px;
+    }
+
+    .note-sub a {
+      color: #0066cc;
+      text-decoration: none;
+    }
+
+    .note-sub a:hover {
+      text-decoration: underline;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 12px;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 6px 8px;
+      font-size: 0.9rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h3>CF Grinding Heatmap</h3>
+    <div class="note-header">
+      <a href="https://codeforces.com/settings/api" target="_blank">Get your API key here!</a>
+    </div>
+    <div class="note-sub">
+      We won’t share your API key or secret.
+    </div>
+    <label>
+      API Key:
+      <input type="text" id="apiKey" />
+    </label>
+    <label>
+      Secret Key:
+      <input type="text" id="secretKey" />
+    </label>
+  </div>
+</body>
+</html>
