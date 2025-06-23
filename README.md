@@ -34,6 +34,9 @@ Unlike the official one, this version reflects how many problems you solved each
 - 📅 **Multiple Years Supported**  
   Explore your activity all the way back to your **first AC** on Codeforces.
 
+- 🔐 **Track Private Submissions**  
+  Provide your **Codeforces API key + secret**, and the extension will use the authenticated endpoint to retrieve **all your submissions**, including those from **private gyms or contests**.
+
 ---
 
 ## 🌈 Color Mapping
