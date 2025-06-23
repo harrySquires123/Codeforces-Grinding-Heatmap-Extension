@@ -15,14 +15,14 @@ Track your **daily grind** on Codeforces — visualized by the **number of probl
 ## 🧠 What This Is
 
 This Chrome extension adds a **contribution-style heatmap** to any Codeforces user profile.  
-But unlike the official one, this one reflects **how many problems** you solved each day — not just your contest rating or participation.
+Unlike the official one, this version reflects how many problems you solved each day — not just contests.
 
 ---
 
 ## 🔍 Key Features
 
 - 📊 **Color = Problem Count**  
-  The more problems you solve on a given day, the **darker** the heatmap square.
+  The more problems you solve on a given day, the more intense the color.
 
 - 🖱️ **Hover to Reveal**  
   Hover over any square to see:
@@ -38,26 +38,26 @@ But unlike the official one, this one reflects **how many problems** you solved 
 
 ## 🌈 Color Mapping
 
-Colors reflect the **number of unique problems** solved on a day:
+The color of each day is based on **how many unique problems** you solved that day:
 
-| Problems Solved | Color Preview | Description       |
-|-----------------|---------------|-------------------|
-| `9+`            | ![#AA0000](https://placehold.co/15x15/AA0000/AA0000.png) | 🔥 Intense grind |
-| `8`             | ![#FF0000](https://placehold.co/15x15/FF0000/FF0000.png) | 🔴 Red hot      |
-| `7`             | ![#FF6464](https://placehold.co/15x15/FF6464/FF6464.png) | 🍓 Light red    |
-| `6`             | ![#FFBB55](https://placehold.co/15x15/FFBB55/FFBB55.png) | 🍊 Orange       |
-| `5`             | ![#FFCC88](https://placehold.co/15x15/FFCC88/FFCC88.png) | 🍑 Soft orange  |
-| `4`             | ![#FF55FF](https://placehold.co/15x15/FF55FF/FF55FF.png) | 💜 Purple pop   |
-| `3`             | ![#AAAAFF](https://placehold.co/15x15/AAAAFF/AAAAFF.png) | 💧 Blue streak  |
-| `2`             | ![#77DDBB](https://placehold.co/15x15/77DDBB/77DDBB.png) | 🫧 Aqua active  |
-| `1`             | ![#77FF77](https://placehold.co/15x15/77FF77/77FF77.png) | 🌱 Light green  |
-| `0`             | ![#CCCCCC](https://placehold.co/15x15/CCCCCC/CCCCCC.png) | ⬜ No activity  |
+| Problems Solved | Color |
+|-----------------|--------|
+| `9+`            | `#AA0000` |
+| `8`             | `#FF0000` |
+| `7`             | `#FF6464` |
+| `6`             | `#FFBB55` |
+| `5`             | `#FFCC88` |
+| `4`             | `#FF55FF` |
+| `3`             | `#AAAAFF` |
+| `2`             | `#77DDBB` |
+| `1`             | `#77FF77` |
+| `0`             | `#CCCCCC` |
+
+> 💡 This mapping is **custom**, not based on Codeforces rating colors.
 
 ---
 
 ## 🚀 Installation (Manual Setup)
-
-You can install the extension manually:
 
 1. **Download ZIP** or clone this repo.
 2. Extract the folder.
@@ -67,17 +67,6 @@ You can install the extension manually:
 6. Select the extracted folder.
 
 Done! 🎉 Open a Codeforces user profile to see the heatmap in action.
-
----
-
-## 📸 Screenshots
-
-### 🔥 Heatmap
-![Heatmap Screenshot](https://github.com/user-attachments/assets/6606ce43-dd9e-45bb-8a43-26b25bec6e5f)
-
-### 🖱️ Hover Tooltip
-![Tooltip Screenshot](https://github.com/user-attachments/assets/ba2c802e-870a-4ec8-af33-34cfc9a37459)
-
 ---
 
 ## 🤝 Contribute
