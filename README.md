@@ -1,80 +1,92 @@
-# Codeforces Rating-Based Heatmap
+# 🔥 Codeforces Grinding Heatmap (By Problem Count)
 
-## Overview
+Track your **daily grind** on Codeforces — visualized by the **number of problems solved each day**!
 
-This project visualizes a Codeforces user's problem-solving activity in a **heatmap format**. Unlike the standard Codeforces heatmap, which only considers the number of problems solved per day, this heatmap is **based on the highest-rated problem solved each day**.
+> 📅 Your consistency matters more than just stars. See the **volume** of your efforts, one square at a time.
 
-[Download from Chrome Web Store](https://chromewebstore.google.com/detail/codeforces-rating-based-h/heajdhmohlobjebkgkpdomkaihaghkgb)
+---
 
-## Key Features
+> ❗ **Note:** This extension is **not on the Chrome Web Store** yet.  
+> Google requires a **$5 developer registration fee**, which hasn't been paid.  
+> You can still install it manually by following the instructions below.
 
-- **🎨 Rating-Based Colors**  
-  The heatmap color on a given day represents the **maximum rating** of a problem solved that day.
+---
 
-- **🖱️ Hover for Details**  
-  - Hovering over any day in the heatmap shows a **tooltip** with all problems solved on that day.  
-  - The tooltip includes:
-    - 📌 **Problem Name**  
-    - ⭐ **Problem Rating**  
-    - 🔗 **Direct Link to the Problem**  
+## 🧠 What This Is
 
-- **📅 Multi-Year Support**  
-  - Analyze past performance across **multiple years** with ease.
+This Chrome extension adds a **contribution-style heatmap** to any Codeforces user profile.  
+But unlike the official one, this one reflects **how many problems** you solved each day — not just your contest rating or participation.
 
-## 🎨 Color Mapping
+---
 
-The heatmap colors are based on the highest-rated problem solved on a given day. Here’s the rating-to-color mapping:
+## 🔍 Key Features
 
-| Problem Rating Range | Color |
-| ------------ | ---------------------------------------------- |
-| 3000+        | ![#AA0000](https://placehold.co/15x15/AA0000/AA0000.png) `Dark Red` |
-| 2600-2999    | ![#FF0000](https://placehold.co/15x15/FF0000/FF0000.png) `Bright Red` |
-| 2400-2599    | ![#FF6464](https://placehold.co/15x15/FF6464/FF6464.png) `Light Red` |
-| 2300-2399    | ![#FFBB55](https://placehold.co/15x15/FFBB55/FFBB55.png) `Orange` |
-| 2100-2299    | ![#FFCC88](https://placehold.co/15x15/FFCC88/FFCC88.png) `Light Orange` |
-| 1900-2099    | ![#FF55FF](https://placehold.co/15x15/FF55FF/FF55FF.png) `Purple` |
-| 1600-1899    | ![#AAAAFF](https://placehold.co/15x15/AAAAFF/AAAAFF.png) `Light Blue` |
-| 1400-1599    | ![#77DDBB](https://placehold.co/15x15/77DDBB/77DDBB.png) `Aqua Green` |
-| 1200-1399    | ![#77FF77](https://placehold.co/15x15/77FF77/77FF77.png) `Green` |
-| 0-1199       | ![#CCCCCC](https://placehold.co/15x15/CCCCCC/CCCCCC.png) `Gray` |
+- 📊 **Color = Problem Count**  
+  The more problems you solve on a given day, the **darker** the heatmap square.
 
-## How It Helps
+- 🖱️ **Hover to Reveal**  
+  Hover over any square to see:
+  - 🧠 Problem name  
+  - ⭐ Rating (if available)  
+  - 🔗 Direct link to the problem  
+  - ⚠️ Gray links indicate duplicates (already solved before)
 
-- Provides an **honest measure** of problem difficulty solved over time.
-- Helps track and analyze **problem-solving trends** based on difficulty.
-- Allows users to **review past problem-solving history** easily by hovering over days.
-- Prevents inflation by solving only easy problems and provides a true measure of problem-solving difficulty.
-- Ideal for self-assessment and tracking competitive programming improvement.
+- 📅 **Multiple Years Supported**  
+  Explore your activity all the way back to your **first AC** on Codeforces.
 
-## 🚀 Installation & Usage
+---
 
-### Chrome Extension Setup
+## 🌈 Color Mapping
 
-1. Download the ZIP file from the repository.
-2. Extract the ZIP.
-3. Open **Chrome** and go to `chrome://extensions/`.
-4. Enable **Developer Mode** (toggle in the top right corner).
-5. Click **Load unpacked** and select the extracted folder.
+Colors reflect the **number of unique problems** solved on a day:
+
+| Problems Solved | Color Preview | Description       |
+|-----------------|---------------|-------------------|
+| `9+`            | ![#AA0000](https://placehold.co/15x15/AA0000/AA0000.png) | 🔥 Intense grind |
+| `8`             | ![#FF0000](https://placehold.co/15x15/FF0000/FF0000.png) | 🔴 Red hot      |
+| `7`             | ![#FF6464](https://placehold.co/15x15/FF6464/FF6464.png) | 🍓 Light red    |
+| `6`             | ![#FFBB55](https://placehold.co/15x15/FFBB55/FFBB55.png) | 🍊 Orange       |
+| `5`             | ![#FFCC88](https://placehold.co/15x15/FFCC88/FFCC88.png) | 🍑 Soft orange  |
+| `4`             | ![#FF55FF](https://placehold.co/15x15/FF55FF/FF55FF.png) | 💜 Purple pop   |
+| `3`             | ![#AAAAFF](https://placehold.co/15x15/AAAAFF/AAAAFF.png) | 💧 Blue streak  |
+| `2`             | ![#77DDBB](https://placehold.co/15x15/77DDBB/77DDBB.png) | 🫧 Aqua active  |
+| `1`             | ![#77FF77](https://placehold.co/15x15/77FF77/77FF77.png) | 🌱 Light green  |
+| `0`             | ![#CCCCCC](https://placehold.co/15x15/CCCCCC/CCCCCC.png) | ⬜ No activity  |
+
+---
+
+## 🚀 Installation (Manual Setup)
+
+You can install the extension manually:
+
+1. **Download ZIP** or clone this repo.
+2. Extract the folder.
+3. Open Chrome and go to `chrome://extensions/`
+4. Enable **Developer Mode**
+5. Click **Load unpacked**
+6. Select the extracted folder.
+
+Done! 🎉 Open a Codeforces user profile to see the heatmap in action.
+
+---
 
 ## 📸 Screenshots
 
-### Heatmap
-![image](https://github.com/user-attachments/assets/6606ce43-dd9e-45bb-8a43-26b25bec6e5f)
+### 🔥 Heatmap
+![Heatmap Screenshot](https://github.com/user-attachments/assets/6606ce43-dd9e-45bb-8a43-26b25bec6e5f)
 
-### Hover Feature
-![image](https://github.com/user-attachments/assets/ba2c802e-870a-4ec8-af33-34cfc9a37459)
+### 🖱️ Hover Tooltip
+![Tooltip Screenshot](https://github.com/user-attachments/assets/ba2c802e-870a-4ec8-af33-34cfc9a37459)
 
-## 📌 Future Improvements
+---
 
-- Show different intensity based on weighted average of problem rating solved in a day.
-- Add dark mode
+## 🤝 Contribute
 
-## 🙌 Contributions
+Want to improve the UI, add modes, or fix bugs?  
+Fork the repo, make changes, and send a PR — contributions are welcome! 😎
 
-Feel free to contribute by improving UI, adding features. Fork the repo and submit a pull request!
+---
 
 ## 📜 License
 
-This project is licensed under the MIT License.
-
-
+Licensed under the [MIT License](./LICENSE)
