@@ -2,9 +2,7 @@
 
 Track your **daily grind** on Codeforces — visualized by the **number of problems solved each day**!
 
-> ❝ If you were trying to ensure you were a failure, you could do everything  
-wrong, but you have to make sure you're **not consistent** — because if you are,  
-you might still accidentally become successful. ❞  
+> ❝ If you were trying to ensure you were a failure, you could do everything wrong, but you have to make sure you're **not consistent** — because if you are, you might still accidentally become successful. ❞  
 > — *random guy from the Internet*
 
 ---
