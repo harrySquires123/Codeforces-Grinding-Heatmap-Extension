@@ -5,11 +5,6 @@ Track your **daily grind** on Codeforces — visualized by the **number of probl
 > ❝ If you were trying to ensure you were a failure, you could do everything wrong, but you have to make sure you're **not consistent** — because if you are, you might still accidentally become successful. ❞  
 > — *random guy from the Internet*
 
----
-
-❗ **Note:** This extension is **not on the Chrome Web Store** yet.  
-Google requires a **$5 developer registration fee**, which hasn't been paid.  
-You can still install it manually by following the instructions below.
 
 ---
 
@@ -17,6 +12,10 @@ You can still install it manually by following the instructions below.
 
 This Chrome extension adds a **contribution-style heatmap** to any Codeforces user profile.  
 Unlike the official one, this version reflects how many problems you solved each day — not just contests.
+
+❗ **Note:** This extension is **not on the Chrome Web Store** yet.  
+Google requires a **$5 developer registration fee**, which hasn't been paid.  
+You can still install it manually by following the instructions below.
 
 ---
 
