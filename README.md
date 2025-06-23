@@ -38,22 +38,18 @@ Unlike the official one, this version reflects how many problems you solved each
 
 ## 🌈 Color Mapping
 
-The color of each day is based on **how many unique problems** you solved that day:
-
 | Problems Solved | Color |
 |-----------------|--------|
-| `9+`            | `#AA0000` |
-| `8`             | `#FF0000` |
-| `7`             | `#FF6464` |
-| `6`             | `#FFBB55` |
-| `5`             | `#FFCC88` |
-| `4`             | `#FF55FF` |
-| `3`             | `#AAAAFF` |
-| `2`             | `#77DDBB` |
-| `1`             | `#77FF77` |
-| `0`             | `#CCCCCC` |
-
-> 💡 This mapping is **custom**, not based on Codeforces rating colors.
+| `9+`            | ![#AA0000](https://placehold.co/15x15/AA0000/AA0000.png) |
+| `8`             | ![#FF0000](https://placehold.co/15x15/FF0000/FF0000.png) |
+| `7`             | ![#FF6464](https://placehold.co/15x15/FF6464/FF6464.png) |
+| `6`             | ![#FFBB55](https://placehold.co/15x15/FFBB55/FFBB55.png) |
+| `5`             | ![#FFCC88](https://placehold.co/15x15/FFCC88/FFCC88.png) |
+| `4`             | ![#FF55FF](https://placehold.co/15x15/FF55FF/FF55FF.png) |
+| `3`             | ![#AAAAFF](https://placehold.co/15x15/AAAAFF/AAAAFF.png) |
+| `2`             | ![#77DDBB](https://placehold.co/15x15/77DDBB/77DDBB.png) |
+| `1`             | ![#77FF77](https://placehold.co/15x15/77FF77/77FF77.png) |
+| `0`             | ![#CCCCCC](https://placehold.co/15x15/CCCCCC/CCCCCC.png) |
 
 ---
 
@@ -67,6 +63,17 @@ The color of each day is based on **how many unique problems** you solved that d
 6. Select the extracted folder.
 
 Done! 🎉 Open a Codeforces user profile to see the heatmap in action.
+
+---
+
+## 📸 Screenshots
+
+### 🔥 Heatmap
+![Heatmap Screenshot](https://github.com/user-attachments/assets/6606ce43-dd9e-45bb-8a43-26b25bec6e5f)
+
+### 🖱️ Hover Tooltip
+![Tooltip Screenshot](https://github.com/user-attachments/assets/ba2c802e-870a-4ec8-af33-34cfc9a37459)
+
 ---
 
 ## 🤝 Contribute
