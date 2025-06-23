@@ -7,9 +7,9 @@ Track your **daily grind** on Codeforces — visualized by the **number of probl
 
 ---
 
-> ❗ **Note:** This extension is **not on the Chrome Web Store** yet.  
-> Google requires a **$5 developer registration fee**, which hasn't been paid.  
-> You can still install it manually by following the instructions below.
+❗ **Note:** This extension is **not on the Chrome Web Store** yet.  
+Google requires a **$5 developer registration fee**, which hasn't been paid.  
+You can still install it manually by following the instructions below.
 
 ---
 
