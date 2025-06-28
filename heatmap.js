@@ -51,21 +51,31 @@ async function sha512(message) {
         .join("");
 }
 
-// Final API URL
-async function generateUrl() {
-    const hash = await sha512(stringToHash);
-    const apiSig = rand + hash;
-    return `https://codeforces.com/api/${method}?${queryString}&apiSig=${apiSig}`;
-}
 async function fetchSubmissionData() {
     if (Object.keys(submissionCache).length > 0) {
         return submissionCache;
     }
 
     try {
-        const { cfApiKey, cfSecretKey } = await new Promise(resolve =>
-            chrome.storage.local.get(["cfApiKey", "cfSecretKey"], resolve)
-        );
+        let cfApiKey, cfSecretKey;
+
+        // Wrap chrome.storage.local.get in a promise
+        const getKeysFromStorage = () => {
+            return new Promise(resolve => {
+                chrome.storage.local.get(["cf_apiKey", "cf_secretKey"], (result) => {
+                    resolve({
+                        apiKey: result.cf_apiKey,
+                        secretKey: result.cf_secretKey
+                    });
+                });
+            });
+        };
+
+        // Wait for the keys to load
+        const { apiKey, secretKey } = await getKeysFromStorage();
+        cfApiKey = apiKey;
+        cfSecretKey = secretKey;
+        
 
         let finalUrl = "";
         if (cfApiKey && cfSecretKey) {
