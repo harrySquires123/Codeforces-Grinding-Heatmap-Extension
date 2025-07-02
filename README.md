@@ -43,6 +43,7 @@ You can still install it manually by following the instructions below.
 During live contests, Codeforces temporarily restricts access to its API in order to reduce server load.  
 Because of this, real-time tools like **Carrot**, **CF-Predictor**, and this heatmap extension may not work reliably until the contest ends.
 
+(Just kidding there's no such thing, just hiding the API bug =)), it works fine now!)
 ---
 ## 🌈 Color Mapping
 
